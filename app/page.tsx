@@ -44,7 +44,7 @@ export default function Login() {
     localStorage.setItem("user_id", data.id);
 
     // Redirect to dashboard
-    router.push("/userdashboard");
+    router.push("/dashboard");
   };
 
   return (
