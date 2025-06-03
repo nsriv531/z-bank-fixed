@@ -44,7 +44,27 @@ export default function Login() {
     localStorage.setItem("user_id", data.id);
 
     // Redirect to dashboard
-    router.push("/dashboard");
+   // Check accounttoggle values before deciding route
+const { data: toggleData, error: toggleError } = await supabase
+  .from("accounttoggle")
+  .select("chequing, saving, tfsa")
+  .eq("user_id", data.id)
+  .single();
+
+if (toggleError) {
+  console.error("Toggle fetch error:", toggleError.message);
+  alert("Failed to determine account setup status.");
+  return;
+}
+
+const { chequing, saving, tfsa } = toggleData;
+
+// Redirect to /setup if all are false
+if (!chequing && !saving && !tfsa) {
+  router.push("/setup");
+} else {
+  router.push("/dashboard");
+}
   };
 
   return (
