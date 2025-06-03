@@ -86,28 +86,54 @@ useEffect(() => {
         <p className="text-sm text-gray-500 mt-1">Here’s your financial overview</p>
       </div>
 
-      {/* Account Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-        {accounts.chequing && (
-          <div className="bg-white p-6 rounded-xl shadow-md">
-            <h2 className="text-lg font-semibold text-blue-600 mb-1">Chequing Account</h2>
-            <p className="text-sm text-gray-500">Account #: {accounts.chequing.accountnumber}</p>
-            <p className="text-sm text-gray-500">Balance: ${accounts.chequing.balance.toFixed(2)}</p>
-            <p className="text-sm text-gray-500">Branch: {accounts.chequing.branchnumber}</p>
-            <p className="text-sm text-green-500 font-medium mt-2">Status: {accounts.chequing.status}</p>
-          </div>
-        )}
-
-        {accounts.savings && (
-          <div className="bg-white p-6 rounded-xl shadow-md">
-            <h2 className="text-lg font-semibold text-green-600 mb-1">Savings Account</h2>
-            <p className="text-sm text-gray-500">Account #: {accounts.savings.accountnumber}</p>
-            <p className="text-sm text-gray-500">Balance: ${accounts.savings.balance.toFixed(2)}</p>
-            <p className="text-sm text-gray-500">Branch: {accounts.savings.branchnumber}</p>
-            <p className="text-sm text-green-500 font-medium mt-2">Status: {accounts.savings.status}</p>
-          </div>
-        )}
+   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+  {accounts.chequing && (
+    <div className="group relative bg-white/80 backdrop-blur-lg border border-blue-100 shadow-xl p-6 rounded-3xl overflow-hidden transition-transform hover:scale-[1.02]">
+      {/* Hover-activated glow ring */}
+      <div className="absolute -top-10 -left-10 w-52 h-52 bg-blue-400 opacity-20 rounded-full scale-0 group-hover:scale-100 group-hover:animate-ping transition-all duration-300" />
+      
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-semibold text-blue-700">Chequing Account</h2>
+          <span className="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700 font-medium">
+            {accounts.chequing.status}
+          </span>
+        </div>
+        <div className="space-y-2 text-gray-700">
+          <p className="text-sm"><span className="text-gray-500">Account #:</span> {accounts.chequing.accountnumber}</p>
+          <p className="text-lg sm:text-xl font-extrabold text-blue-900">
+            ${accounts.chequing.balance.toFixed(2)}
+          </p>
+          <p className="text-sm"><span className="text-gray-500">Branch:</span> {accounts.chequing.branchnumber}</p>
+        </div>
       </div>
+    </div>
+  )}
+
+  {accounts.savings && (
+    <div className="group relative bg-white/80 backdrop-blur-lg border border-green-100 shadow-xl p-6 rounded-3xl overflow-hidden transition-transform hover:scale-[1.02]">
+      {/* Hover-activated glow ring */}
+      <div className="absolute -bottom-10 -right-10 w-52 h-52 bg-green-400 opacity-20 rounded-full scale-0 group-hover:scale-100 group-hover:animate-ping transition-all duration-300" />
+
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-semibold text-green-700">Savings Account</h2>
+          <span className="px-3 py-1 text-xs rounded-full bg-green-100 text-green-700 font-medium">
+            {accounts.savings.status}
+          </span>
+        </div>
+        <div className="space-y-2 text-gray-700">
+          <p className="text-sm"><span className="text-gray-500">Account #:</span> {accounts.savings.accountnumber}</p>
+          <p className="text-lg sm:text-xl font-extrabold text-green-900">
+            ${accounts.savings.balance.toFixed(2)}
+          </p>
+          <p className="text-sm"><span className="text-gray-500">Branch:</span> {accounts.savings.branchnumber}</p>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
+
 
       {/* Rest of the Dashboard */}
       <div className="grid grid-cols-1 xl:grid-cols-[320px_1fr_340px] gap-8 xl:gap-14 items-start">
